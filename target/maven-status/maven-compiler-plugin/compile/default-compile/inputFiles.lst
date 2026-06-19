@@ -1,0 +1,9 @@
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/AccessingDataMongodbApplication.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/api/MyMongoApi.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/customer/CustomerRepository.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/customer/CustomerService.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/customer/dto/CustomerDTO.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/customer/entity/Customer.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/customer/mapper/CustomerMapper.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/exception/ApplicationException.java
+/home/utente/Scrivania/spring/mongodb/src/main/java/com/example/accessingdatamongodb/exception/ServiceException.java
