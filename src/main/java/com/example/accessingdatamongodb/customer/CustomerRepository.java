@@ -10,6 +10,5 @@ public interface CustomerRepository extends MongoRepository<Customer, String> {
 
 	@Nullable
 	Optional<Customer> findByFirstName(String firstName);
-
 	List<Customer> findByLastName(String lastName);
 }

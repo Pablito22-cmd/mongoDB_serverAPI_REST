@@ -31,7 +31,7 @@ public class MyMongoApi {
                     .path("/{idCustomer}").buildAndExpand(idCustomer).toUri();
             return new ResponseEntity<>(location, HttpStatus.CREATED);
         }catch (ServiceException e){
-            throw new ApplicationException(e);
+            throw new ApplicationException(e.getMessage());
         }
     }
 
@@ -43,31 +43,42 @@ public class MyMongoApi {
             List<CustomerDTO> customers = service.elencoCustomers();
             return new ResponseEntity<>(customers, HttpStatus.OK);
         }catch (ServiceException e){
-            throw new ApplicationException(e);
+            throw new ApplicationException(e.getMessage());
         }
     }
 
     //READ ONE
-    @GetMapping(value = "/{name}")
+    @GetMapping(value = "/custName/{name}")
     public ResponseEntity<CustomerDTO> findByFirstName(@PathVariable("name") String firstName) throws ApplicationException{
         try{
             System.out.println("Recupero customer " + firstName);
             CustomerDTO customerdto = service.trovaCustomerNome(firstName);
             return new ResponseEntity<>(customerdto,HttpStatus.OK);
         }catch (ServiceException e){
-            throw new ApplicationException(e);
+            throw new ApplicationException(e.getMessage());
         }
     }
 
     //READ ONE'S LANGUAGES
-    @GetMapping(value = "/{firstName}/lang")
+    @GetMapping(value = "/custLang/{firstName}")
     public ResponseEntity<List<String>> findLangByFirstName(@PathVariable("firstName") String firstName) throws ApplicationException{
         try{
             System.out.println("Recupero lingue customer " + firstName);
             CustomerDTO customerdto = service.trovaCustomerNome(firstName);
             return new ResponseEntity<>(customerdto.getLanguages(),HttpStatus.OK);
         }catch (ServiceException e){
-            throw new ApplicationException(e);
+            throw new ApplicationException(e.getMessage());
+        }
+    }
+
+    //READ SOME
+    @GetMapping(value = "/custLast/{lastName}")
+    public ResponseEntity<List<CustomerDTO>> findByLastName(@PathVariable("lastName") String lastName) throws ApplicationException {
+        try{
+            List<CustomerDTO> customerDtos = service.trovaCustomersLastName(lastName);
+            return new ResponseEntity<>(customerDtos, HttpStatus.OK);
+        }catch (ServiceException e){
+            throw new ApplicationException(e.getMessage());
         }
     }
 
@@ -79,19 +90,19 @@ public class MyMongoApi {
             System.out.println("Aggiornato customer " + customerDto.getFirstName());
             return new ResponseEntity<>("Customer Aggiornato!",HttpStatus.NO_CONTENT);
         }catch (ServiceException e){
-            throw new ApplicationException(e);
+            throw new ApplicationException(e.getMessage());
         }
     }
 
     //DELETE BY NAME
-    @DeleteMapping(value = "/{firstName}")
+    @DeleteMapping(value = "/name/{firstName}")
     public ResponseEntity<String> eliminaCustomerByName(@PathVariable("firstName") String firstName) throws ApplicationException{
         try{
             service.cancellaCustomer(firstName);
             System.out.println("Customer " + firstName + " eliminato");
             return new ResponseEntity<>("Customer Eliminato",HttpStatus.NO_CONTENT);
         }catch (ServiceException e){
-            throw new ApplicationException(e);
+            throw new ApplicationException(e.getMessage());
         }
     }
 
@@ -103,7 +114,7 @@ public class MyMongoApi {
             System.out.println("Customer " + idCustomer + " eliminato");
             return new ResponseEntity<>("Customer Eliminato",HttpStatus.NO_CONTENT);
         }catch (ServiceException e){
-            throw new ApplicationException(e);
+            throw new ApplicationException(e.getMessage());
         }
     }
 }

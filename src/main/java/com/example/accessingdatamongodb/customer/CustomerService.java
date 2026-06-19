@@ -43,6 +43,23 @@ public class CustomerService{
         }
     }
 
+    public List<CustomerDTO> trovaCustomersLastName(String lastName) throws ServiceException{
+        try{
+            List<Customer> customers = repository.findByLastName(lastName);
+            List<CustomerDTO> customerDTOs = new ArrayList<CustomerDTO>();
+            if(customers.size() > 0) {
+                for (Customer c : customers) {
+                    customerDTOs.add(mapper.convertEntityToDto(c));
+                }
+                return customerDTOs;
+            }else{
+                throw new ServiceException("Nessun Customer corrispondente");
+            }
+        }catch (Exception e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
     public String crea(CustomerDTO customerDto) throws ServiceException{
         try{
             Customer customer = mapper.convertDtoToEntity(customerDto);
